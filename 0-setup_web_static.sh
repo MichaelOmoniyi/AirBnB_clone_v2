@@ -51,7 +51,7 @@ sudo ln -s -f "$target_link" /data/web_static/current
 data_folder="/data"
 user="ubuntu"
 group="ubuntu"
-group chown -R "$user":"$group" "$data_folder"
+chown -R "$user":"$group" "$data_folder"
 
 nginx_config="
 server {
