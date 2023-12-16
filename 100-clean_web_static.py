@@ -10,7 +10,8 @@ def do_clean(number=0):
     """deletes out-of-date archives
 
     Args:
-        number (int): number of the archives, including the most recent, to keep
+        number (int): number of the archives, including
+        the most recent, to keep
 
     If number is 0 or 1, keeps only the most recent archive. If
     number is 2, keeps the most and second-most recent archives,
@@ -26,7 +27,7 @@ def do_clean(number=0):
     [archives.pop() for i in range(number)]
     with lcd("versions"):
         [local("rm ./{}".format(a)) for a in archives]
-    
+
     with cd("/data/web_static/releases"):
         archives = run("ls -tr").split()
         archives = [a for a in archives if "web_static_" in a]
