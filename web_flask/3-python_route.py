@@ -36,16 +36,15 @@ def c(text):
     processed_text = text.replace('_', ' ')
     return f"C {processed_text}"
 
-@app.route(/python/<text>), strict_slashes=False)
-def python(text):
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python(text="is_cool"):
     """
         display “Python ”, followed by the value of the text variable (replace underscore _ symbols with a space )
     """
-
-    if text == "":
-        return f"Python is cool"
-    processed_text = text.replace('_', ' ')
-    return f"Python {processed_text}"
+    
+    text = text.replace('_', ' ')
+    return f"Python {text}"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
