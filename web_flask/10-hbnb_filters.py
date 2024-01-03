@@ -17,19 +17,14 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.route('/states_list', strict_slashes=False)
-def states():
-    """
-        display a HTML page: (inside the tag BODY)
-            H1 tag: “States”
-            UL tag: with the list of all State objects present
-            in DBStorage sorted by name (A->Z) tip
-            LI tag: description of one State:
-            <state.id>: <B><state.name></B>
-    """
+@app.route('/hbnb_filters', strict_slashes=False)
+def hbnb_filters():
+    """ display a HTML page like 6-index.html """
 
     states = storage.all("State")
-    return render_template('7-states_list.html', states=states)
+    amenities = storage.all("Amenity")
+    return render_template('10-hbnb_filters.html',
+                           states=states, amenities=amenities)
 
 
 @app.teardown_appcontext
@@ -37,53 +32,6 @@ def close(exc):
     """ Removes the current SQLAlchemy Session """
 
     storage.close()
-
-
-@app.route('/cities_by_states', strict_slashes=False)
-def cities():
-    """
-        display a HTML page: (inside the tag BODY)
-            H1 tag: “States”
-            UL tag: with the list of all State objects present
-            in DBStorage sorted by name (A->Z) tip
-                LI tag: description of one State:
-                <state.id>: <B><state.name></B> + UL tag: with the list of
-                City objects linked to the State sorted by name (A->Z)
-                    LI tag: description of one City:
-                    <city.id>: <B><city.name></B>
-    """
-
-    states = storage.all("State")
-    cities = storage.all("Cities")
-    return render_template('8-cities_by_states.html', states=states,
-                           cities=cities)
-
-
-@app.route('/states/<id>', strict_slashes=False)
-def states_id(state_id):
-    """
-        display a HTML page: (inside the tag BODY)
-        If a State object is found with this id:
-            H1 tag: “State: ”
-            H3 tag: “Cities:”
-            UL tag: with the list of City objects linked
-            to the State sorted by name (A->Z)
-                LI tag: description of one City:
-                <city.id>: <B><city.name></B>
-        Otherwise:
-            H1 tag: “Not found!”
-    """
-
-    states = storage.all("State")
-    return render_template('9-states.html', state_id=id,
-                           states=states)
-
-
-@app.route('/hbnb_filters', strict_slashes=False)
-def hbnb_filters():
-    """ display a HTML page like 6-index.html """
-
-    return render_template('6-index.html')
 
 
 if __name__ == "__main__":
