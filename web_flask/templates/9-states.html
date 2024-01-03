@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+
+    <BODY>
+        {% if state_id in (states.values()|sort(attribute="name")).id %}
+        <H1>State: {{ states.values("state_id").name }}</H1>
+        <H3>Cities:</H3>
+        <UL>
+        {% for state in states.values(
+            <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
+        {% end for %}
+        </UL>
+        {% else if %}
+            <H1>Not found!</H1>
+        {% end if %}
+    </BODY>
+</HTML>
