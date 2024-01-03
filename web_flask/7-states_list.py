@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 
 @app.route('/states_list', strict_slashes=False)
-def states():
+def states_list():
     """
         display a HTML page: (inside the tag BODY)
             H1 tag: “States”
